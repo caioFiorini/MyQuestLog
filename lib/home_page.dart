@@ -1,1 +1,3 @@
-class HomePage {}
+class HomePage {
+  
+}
