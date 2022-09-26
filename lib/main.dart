@@ -16,7 +16,6 @@ class App extends StatelessWidget {
       title: 'API Demo',
       theme: ThemeData(
         primarySwatch: Colors.amber,
-        brightness: Brightness.dark,
       ),
       routerDelegate: routes.routerDelegate,
       routeInformationParser: routes.routeInformationParser,
