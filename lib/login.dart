@@ -18,6 +18,10 @@ class _Tela_Login extends State<Tela_Login> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const SizedBox(
+                height: 5.0,
+              ),
+
               //greeting text
 
               Text(
@@ -141,7 +145,7 @@ class _Tela_Login extends State<Tela_Login> {
                   ElevatedButton(
                     onPressed: null, //modificar para ir para a página
                     child: Text(
-                      "Registre agora",
+                      "Cadastre-se",
                       style: TextStyle(
                         color: Colors.orange,
                         fontWeight: FontWeight.bold,
