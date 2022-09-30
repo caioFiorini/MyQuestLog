@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:go_router/go_router.dart';
 
 class Tela_Login extends StatefulWidget {
   @override
@@ -9,10 +10,12 @@ class Tela_Login extends StatefulWidget {
 }
 
 class _Tela_Login extends State<Tela_Login> {
+  Color c = const Color(0xFF993300);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F4D7),
+      backgroundColor: const Color(0xFFfcf0cf),
       body: SafeArea(
         child: Center(
           child: Column(
@@ -111,20 +114,18 @@ class _Tela_Login extends State<Tela_Login> {
 
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Container(
-                  padding: const EdgeInsets.all(20.0),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: const Color(0xFF993300),
+                child: ElevatedButton(
+                  onPressed: () => context.push('/login/home_page'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF993300),
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   ),
-                  child: const Center(
-                      child: Text(
-                    'Log in',
+                  child: const Text(
+                    "Login",
                     style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16.0),
-                  )),
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ),
               //not a member? register now
@@ -134,24 +135,31 @@ class _Tela_Login extends State<Tela_Login> {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text(
+                children: [
+                  const Text(
                     'Não é Membro? ',
                     style: TextStyle(
                       color: Colors.black87,
                       fontStyle: FontStyle.italic,
                     ),
                   ),
+<<<<<<< HEAD
                   ElevatedButton(
                     onPressed: null, //modificar para ir para a página
                     child: Text(
                       "Cadastre-se",
+=======
+                  TextButton(
+                    onPressed: () => context.push('/login/registro'),
+                    child: const Text(
+                      'Registre agora',
+>>>>>>> caio
                       style: TextStyle(
                         color: Colors.orange,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                  )
+                  ),
                 ],
               )
             ],
