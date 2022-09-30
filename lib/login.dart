@@ -135,25 +135,18 @@ class _Tela_Login extends State<Tela_Login> {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
+                children: const [
+                  Text(
                     'Não é Membro? ',
                     style: TextStyle(
                       color: Colors.black87,
                       fontStyle: FontStyle.italic,
                     ),
                   ),
-<<<<<<< HEAD
                   ElevatedButton(
                     onPressed: null, //modificar para ir para a página
                     child: Text(
                       "Cadastre-se",
-=======
-                  TextButton(
-                    onPressed: () => context.push('/login/registro'),
-                    child: const Text(
-                      'Registre agora',
->>>>>>> caio
                       style: TextStyle(
                         color: Colors.orange,
                         fontWeight: FontWeight.bold,

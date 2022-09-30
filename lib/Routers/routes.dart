@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-<<<<<<< HEAD
-
 import 'package:myquestlog/homePage.dart';
-=======
-import 'package:myquestlog/registro.dart';
-import 'package:myquestlog/home_page.dart';
->>>>>>> caio
 import 'package:myquestlog/login.dart';
+import 'package:myquestlog/user_page.dart';
+
+import '../Registro.dart';
 
 final routes = GoRouter(
   routes: [
@@ -26,6 +23,10 @@ final routes = GoRouter(
     GoRoute(
       path: '/registro/home_page',
       builder: ((context, state) => HomePage()),
+    ),
+    GoRoute(
+      path: 'user_page',
+      builder: ((context, state) => const UserPage()),
     ),
     //pageBuilder: MaterialPage(child: Tela_Login()))
   ],
