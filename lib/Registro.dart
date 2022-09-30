@@ -106,7 +106,7 @@ class _Registro extends State<Registro> {
                 child: const Text(
                   "Cadastrar",
                   style: TextStyle(
-                    color: Colors.blue,
+                    color: Colors.white,
                   ),
                 ),
               )
