@@ -68,6 +68,9 @@ class _UserPageState extends State<UserPage> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          const SizedBox(
+            height: 30,
+          ),
           Center(
             child: Padding(
               padding: const EdgeInsets.all(20.0),
