@@ -102,7 +102,7 @@ class _Registro extends State<Registro> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF993300),
                 ),
-                onPressed: () => context.go('/registro/home_page'),
+                onPressed: () => context.go('/login/registro'),
                 child: const Text(
                   "Cadastrar",
                   style: TextStyle(

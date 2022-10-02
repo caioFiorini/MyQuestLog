@@ -4,7 +4,7 @@ import 'package:myquestlog/homePage.dart';
 import 'package:myquestlog/login.dart';
 import 'package:myquestlog/user_page.dart';
 
-import '../Registro.dart';
+import '../registro.dart';
 
 final routes = GoRouter(
   routes: [
@@ -17,15 +17,15 @@ final routes = GoRouter(
       builder: ((context, state) => Registro()),
     ),
     GoRoute(
-      path: '/login/home_page',
+      path: '/login/homePage',
       builder: ((context, state) => HomePage()),
     ),
     GoRoute(
-      path: '/registro/home_page',
+      path: '/registro/homePage',
       builder: ((context, state) => HomePage()),
     ),
     GoRoute(
-      path: 'user_page',
+      path: '/user_page',
       builder: ((context, state) => const UserPage()),
     ),
     //pageBuilder: MaterialPage(child: Tela_Login()))
