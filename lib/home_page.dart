@@ -48,11 +48,11 @@ class _HomePage extends State<HomePage> {
             label: 'Home',
           ),
           CustomBottomBarItems(
-            icon: Icons.account_box_outlined,
-            label: 'Account',
+            icon: Icons.list,
+            label: 'Terefas',
           ),
           CustomBottomBarItems(
-            label: 'Leaves',
+            label: 'Usuário',
             icon: Icons.calendar_today_outlined,
           ),
           CustomBottomBarItems(
