@@ -145,8 +145,7 @@ class _Tela_Login extends State<Tela_Login> {
                   ),
                   TextButton(
                     onPressed: () => context.go(
-                      '/login/registro',
-                    ), //modificar para ir para a página
+                        '/login/registro'), //modificar para ir para a página
                     child: const Text(
                       "Cadastre-se",
                       style: TextStyle(
