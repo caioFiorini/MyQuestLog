@@ -43,18 +43,6 @@ class _PageJulianaState extends State<PageJuliana> {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.message),
-              title: Text('Messages'),
-              iconColor: Colors.white,
-              textColor: Colors.white,
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text('Profile'),
-              iconColor: Colors.white,
-              textColor: Colors.white,
-            ),
-            ListTile(
               leading: Icon(Icons.settings),
               title: Text('Settings'),
               iconColor: Colors.white,

@@ -13,6 +13,9 @@ class _Registro extends State<Registro> {
   // final valueController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    TextEditingController controllerNome = TextEditingController();
+    TextEditingController controllerEmail = TextEditingController();
+    TextEditingController controllerSenha = TextEditingController();
     return Scaffold(
       backgroundColor: const Color(0xFFfcf0cf),
       body: SafeArea(
@@ -39,13 +42,14 @@ class _Registro extends State<Registro> {
                     border: Border.all(color: Colors.black12),
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  child: const Padding(
-                    padding: EdgeInsets.only(left: 20.0),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
                     child: TextField(
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         border: InputBorder.none,
-                        hintText: 'Nome:',
+                        labelText: "Nome:",
                       ),
+                      controller: controllerNome,
                     ),
                   ),
                 ),
@@ -61,13 +65,14 @@ class _Registro extends State<Registro> {
                     border: Border.all(color: Colors.black12),
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  child: const Padding(
-                    padding: EdgeInsets.only(left: 20.0),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
                     child: TextField(
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Email:',
                       ),
+                      controller: controllerEmail,
                     ),
                   ),
                 ),
@@ -83,14 +88,15 @@ class _Registro extends State<Registro> {
                     border: Border.all(color: Colors.black12),
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  child: const Padding(
-                    padding: EdgeInsets.only(left: 20.0),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
                     child: TextField(
                       obscureText: true,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Senha:',
                       ),
+                      controller: controllerSenha,
                     ),
                   ),
                 ),
@@ -102,7 +108,7 @@ class _Registro extends State<Registro> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF993300),
                 ),
-                onPressed: () => context.go('/login/home_page'),
+                onPressed: () => context.go('/registro/home_page'),
                 child: const Text(
                   "Cadastrar",
                   style: TextStyle(

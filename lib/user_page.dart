@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 class UserPage extends StatefulWidget {
@@ -27,8 +28,8 @@ class _UserPageState extends State<UserPage> {
         backgroundColor: const Color(0xFF993300),
         child: ListView(
           padding: EdgeInsets.zero,
-          children: const <Widget>[
-            SizedBox(
+          children: [
+            const SizedBox(
               height: 110,
               child: DrawerHeader(
                 decoration: BoxDecoration(
@@ -44,22 +45,20 @@ class _UserPageState extends State<UserPage> {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.message),
-              title: Text('Messages'),
+              leading: const Icon(Icons.settings),
+              title: TextButton(
+                onPressed: () => context.push(
+                    '/user_page/pagina_configuracao'), //modificar para ir para a página
+                child: const Text(
+                  "Configuração",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
               iconColor: Colors.white,
-              textColor: Colors.white,
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text('Profile'),
-              iconColor: Colors.white,
-              textColor: Colors.white,
-            ),
-            ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('Settings'),
-              iconColor: Colors.white,
-              textColor: Colors.white,
             ),
           ],
         ),
