@@ -15,41 +15,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.1.0"
-  app_links:
-    dependency: transitive
-    description:
-      name: app_links
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.3.0"
-  app_links_macos:
-    dependency: transitive
-    description:
-      name: app_links_macos
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
-  app_links_platform_interface:
-    dependency: transitive
-    description:
-      name: app_links_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.2"
-  app_links_web:
-    dependency: transitive
-    description:
-      name: app_links_web
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
-  app_links_windows:
-    dependency: transitive
-    description:
-      name: app_links_windows
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.1"
+
   args:
     dependency: transitive
     description:
@@ -366,6 +332,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.2"
+  lottie:
+    dependency: "direct main"
+    description:
+      name: lottie
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.4.3"
   matcher:
     dependency: transitive
     description:
