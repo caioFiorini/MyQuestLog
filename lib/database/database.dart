@@ -12,18 +12,20 @@ class Database_MyQuesLog {
           " CREATE TABLE usuarios (id INTEGER PRIMARY KEY AUTOINCREMENT, nome VARCHAR, email VARCHAR, senha VARCHAR)";
       db.execute(sql);
     });
-    return bd;
     print("aberto: " + bd.isOpen.toString());
+    return bd;
   }
 
-  salvar_dados(String nome, String email, String senha) async {
+  salvar_dados(String nome) async {
     Database bd = await recuperar_bancode_dados();
-    Map<String, dynamic> dadosUsario = {
+    /*Map<String, dynamic> dadosUsario = {
       "nome": nome,
       "email": email,
-      "senha": senha
-    };
-    int id = await bd.insert("usuarios", dadosUsario);
+      "senha": senha,
+    };*/
+    print(dadosUsario);
+    int id = await bd.insert("usuarios", nome.toMap());
+
     print("Salvo: $id ");
   }
 
@@ -63,14 +65,14 @@ class Database_MyQuesLog {
 
   atualizar_usuario(int id, String nome, String email, String senha) async {
     Database bd = await recuperar_bancode_dados();
-    Map<String, dynamic> dados_usuario = {
+    Map<String, dynamic> dadosUsuario = {
       "nome": nome,
       "email": email,
       "senha": senha,
     };
     int retorno = await bd.update(
       "usuarios",
-      dados_usuario,
+      dadosUsuario,
       where: "id = ?",
       whereArgs: [id],
     );

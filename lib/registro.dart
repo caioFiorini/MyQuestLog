@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
+import 'database/database.dart';
 
 class Registro extends StatefulWidget {
   @override
@@ -11,6 +12,7 @@ class Registro extends StatefulWidget {
 
 class _Registro extends State<Registro> {
   // final valueController = TextEditingController();
+  Database_MyQuesLog database_myQuesLog = Database_MyQuesLog();
   @override
   Widget build(BuildContext context) {
     TextEditingController controllerNome = TextEditingController();
@@ -108,7 +110,11 @@ class _Registro extends State<Registro> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF993300),
                 ),
-                onPressed: () => context.go('/registro/home_page'),
+                onPressed: () {
+                  //database_myQuesLog.salvar_dados(controllerNome.text,controllerEmail.text, controllerSenha.text);
+                  database_myQuesLog.salvar_dados(controllerNome.text);
+                  context.go('/registro/home_page');
+                },
                 child: const Text(
                   "Cadastrar",
                   style: TextStyle(
