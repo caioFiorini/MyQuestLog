@@ -28,9 +28,9 @@ class _HomePage extends State<HomePage> {
         ],
       ),
       bottomNavigationBar: CustomLineIndicatorBottomNavbar(
-        selectedColor: const Color(0xFF1e1e1f),
-        unSelectedColor: Colors.white,
-        backgroundColor: const Color(0xFF993300),
+        selectedColor: Colors.white,
+        unSelectedColor: const Color(0xFFC99F0D),
+        backgroundColor: const Color(0xFF606060),
         currentIndex: _selectedIndex,
         selectedIconSize: 20,
         onTap: (index) {

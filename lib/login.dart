@@ -11,14 +11,12 @@ class Tela_Login extends StatefulWidget {
 }
 
 class _Tela_Login extends State<Tela_Login> {
-  Color c = const Color(0xFF993300);
-
   @override
   Widget build(BuildContext context) {
     TextEditingController _controller_email = TextEditingController();
     TextEditingController _controller_senha = TextEditingController();
     return Scaffold(
-      backgroundColor: const Color(0xFFfcf0cf),
+      backgroundColor: const Color(0xFF606060),
       body: SafeArea(
         child: Center(
           child: Column(
@@ -35,7 +33,7 @@ class _Tela_Login extends State<Tela_Login> {
                 style: GoogleFonts.secularOne(
                   fontSize: 42.0,
                   fontWeight: FontWeight.bold,
-                  color: const Color(0xFF993300),
+                  color: const Color(0xFFC99F0D),
                 ),
               ),
 
@@ -44,7 +42,7 @@ class _Tela_Login extends State<Tela_Login> {
                 style: GoogleFonts.secularOne(
                     fontSize: 42.0,
                     fontWeight: FontWeight.bold,
-                    color: const Color(0xFF993300)),
+                    color: const Color(0xFFC99F0D)),
               ),
 
               const SizedBox(
@@ -55,7 +53,7 @@ class _Tela_Login extends State<Tela_Login> {
                 'Bem Vindo',
                 style: TextStyle(
                   fontSize: 16,
-                  color: Color(0xFF993300),
+                  color: Color(0xFFC99F0D),
                 ),
               ),
 
@@ -124,13 +122,13 @@ class _Tela_Login extends State<Tela_Login> {
                     context.push('/login/home_page');
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF993300),
+                    backgroundColor: const Color(0xFFC99F0D),
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   ),
                   child: const Text(
                     "Login",
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Color(0xFF2E2E2E),
                     ),
                   ),
                 ),
@@ -146,7 +144,7 @@ class _Tela_Login extends State<Tela_Login> {
                   const Text(
                     'Não é Membro? ',
                     style: TextStyle(
-                      color: Colors.black87,
+                      color: Colors.white,
                       fontStyle: FontStyle.italic,
                     ),
                   ),

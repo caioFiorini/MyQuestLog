@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:myquestlog/home_page.dart';
 import 'package:myquestlog/login.dart';
 import 'package:myquestlog/pagina_configuracao.dart';
+import 'package:myquestlog/pagina_configuracao_conta.dart';
 import 'package:myquestlog/registro.dart';
 
 final routes = GoRouter(
@@ -25,6 +26,10 @@ final routes = GoRouter(
     GoRoute(
       path: '/user_page/pagina_configuracao',
       builder: ((context, state) => PageConfig()),
+    ),
+    GoRoute(
+      path: '/pagina_configuracao/pagina_configuracao_conta',
+      builder: ((context, state) => ContaConfig()),
     )
 
     //pageBuilder: MaterialPage(child: Tela_Login()))

@@ -6,25 +6,25 @@ class Database_MyQuesLog {
   recuperar_bancode_dados() async {
     final caminhoBancoDados = await getDatabasesPath();
     final localBancoDados = join(caminhoBancoDados, "bancoDados.bd");
-    var bd = await openDatabase(localBancoDados, version: 1,
+    var bd = await openDatabase(localBancoDados, version: 2,
         onCreate: (db, dbVersaoRecente) {
       String sql =
-          " CREATE TABLE usuarios (id INTEGER PRIMARY KEY AUTOINCREMENT, nome VARCHAR, email VARCHAR, senha VARCHAR)";
+          " CREATE TABLE usuarios (id INTEGER PRIMARY KEY AUTOINCREMENT, nome VARCHAR, email VARCHAR PRIMARY KEY, senha VARCHAR)";
       db.execute(sql);
     });
     print("aberto: " + bd.isOpen.toString());
     return bd;
   }
 
-  salvar_dados(String nome) async {
+  salvar_dados(String nome, String email, String senha) async {
     Database bd = await recuperar_bancode_dados();
-    /*Map<String, dynamic> dadosUsario = {
+    Map<String, dynamic> dadosUsuario = {
       "nome": nome,
       "email": email,
       "senha": senha,
-    };*/
-    print(dadosUsario);
-    int id = await bd.insert("usuarios", nome.toMap());
+    };
+    print(dadosUsuario);
+    int id = await bd.insert("usuarios", dadosUsuario);
 
     print("Salvo: $id ");
   }

@@ -19,7 +19,7 @@ class _Registro extends State<Registro> {
     TextEditingController controllerEmail = TextEditingController();
     TextEditingController controllerSenha = TextEditingController();
     return Scaffold(
-      backgroundColor: const Color(0xFFfcf0cf),
+      backgroundColor: const Color(0xFF606060),
       body: SafeArea(
         child: Center(
           child: Column(
@@ -30,7 +30,7 @@ class _Registro extends State<Registro> {
                 style: GoogleFonts.secularOne(
                   fontSize: 42.0,
                   fontWeight: FontWeight.bold,
-                  color: const Color(0xFF993300),
+                  color: const Color(0xFFC99F0D),
                 ),
               ),
               const SizedBox(
@@ -108,17 +108,18 @@ class _Registro extends State<Registro> {
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF993300),
+                  backgroundColor: const Color(0xFFC99F0D),
                 ),
                 onPressed: () {
-                  //database_myQuesLog.salvar_dados(controllerNome.text,controllerEmail.text, controllerSenha.text);
-                  database_myQuesLog.salvar_dados(controllerNome.text);
+                  database_myQuesLog.salvar_dados(controllerNome.text,
+                      controllerEmail.text, controllerSenha.text);
+                  //database_myQuesLog.salvar_dados(controllerNome.text);
                   context.go('/registro/home_page');
                 },
                 child: const Text(
                   "Cadastrar",
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Color(0xFF2E2E2E),
                   ),
                 ),
               )
