@@ -15,9 +15,9 @@ class _PageJulianaState extends State<PageJuliana> {
     return Scaffold(
       backgroundColor: const Color(0xFF2E2E2E),
       appBar: AppBar(
-          backgroundColor: const Color(0xFF606060),
+          backgroundColor: const Color(0xFF2E2E2E),
           automaticallyImplyLeading: true, //retira a seta de voltar
-          elevation: 2,
+          elevation: 0,
           centerTitle: true,
           title: const Text(
             "Tarefas",

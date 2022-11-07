@@ -13,8 +13,8 @@ class _ContaConfigState extends State<ContaConfig> {
     return Scaffold(
       backgroundColor: const Color(0xFF2E2E2E),
       appBar: AppBar(
-          backgroundColor: const Color(0xFF606060),
-          elevation: 2,
+          backgroundColor: const Color(0xFF2E2E2E),
+          elevation: 0,
           centerTitle: true,
           title: const Text(
             "My Quest Log",
@@ -24,14 +24,11 @@ class _ContaConfigState extends State<ContaConfig> {
       body: ListView(
         padding: const EdgeInsets.all(8),
         children: const <Widget>[
-          SizedBox(height: 15),
-          Card(
-            clipBehavior: Clip.hardEdge,
-            color: Color(0xFF606060),
-          ),
-          Card(
-            clipBehavior: Clip.hardEdge,
-            color: Color(0xFF606060),
+          const SizedBox(
+            child: Text(
+              "Digite o email para apagar a conta:",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
           ),
         ],
       ),

@@ -15,8 +15,8 @@ class PageConfigState extends State<PageConfig> {
     return Scaffold(
       backgroundColor: const Color(0xFF2E2E2E),
       appBar: AppBar(
-          backgroundColor: const Color(0xFF606060),
-          elevation: 2,
+          backgroundColor: const Color(0xFF2E2E2E),
+          elevation: 0,
           centerTitle: true,
           title: const Text(
             "My Quest Log",
