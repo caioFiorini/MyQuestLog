@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
+import 'database/database.dart';
 
 class Tela_Login extends StatefulWidget {
   @override
@@ -14,6 +15,8 @@ class _Tela_Login extends State<Tela_Login> {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController _controller_email = TextEditingController();
+    TextEditingController _controller_senha = TextEditingController();
     return Scaffold(
       backgroundColor: const Color(0xFFfcf0cf),
       body: SafeArea(
@@ -69,13 +72,14 @@ class _Tela_Login extends State<Tela_Login> {
                     border: Border.all(color: Colors.black12),
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  child: const Padding(
-                    padding: EdgeInsets.only(left: 20.0),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
                     child: TextField(
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Email',
                       ),
+                      controller: _controller_email,
                     ),
                   ),
                 ),
@@ -94,14 +98,15 @@ class _Tela_Login extends State<Tela_Login> {
                     border: Border.all(color: Colors.black12),
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  child: const Padding(
-                    padding: EdgeInsets.only(left: 20.0),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
                     child: TextField(
                       obscureText: true,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Password',
                       ),
+                      controller: _controller_senha,
                     ),
                   ),
                 ),
@@ -115,7 +120,9 @@ class _Tela_Login extends State<Tela_Login> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: ElevatedButton(
-                  onPressed: () => context.push('/login/home_page'),
+                  onPressed: () {
+                    context.push('/login/home_page');
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF993300),
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),

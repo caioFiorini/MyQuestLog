@@ -4,6 +4,7 @@ import 'package:myquestlog/paginaCabral.dart';
 import 'package:myquestlog/paginaJuliana.dart';
 import 'package:myquestlog/paginaVito.dart';
 import 'package:myquestlog/user_page.dart';
+import 'pagina_configuracao.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -23,7 +24,6 @@ class _HomePage extends State<HomePage> {
         children: const [
           UserPage(),
           PageJuliana(),
-          PageVito(),
           PaginaCabral(),
         ],
       ),
@@ -54,10 +54,6 @@ class _HomePage extends State<HomePage> {
           CustomBottomBarItems(
             label: 'Usuário',
             icon: Icons.calendar_today_outlined,
-          ),
-          CustomBottomBarItems(
-            label: 'Loyalty',
-            icon: Icons.card_giftcard_rounded,
           ),
         ],
       ),
