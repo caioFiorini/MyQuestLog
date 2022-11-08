@@ -34,14 +34,7 @@ class Database_MyQuesLog {
     String sql = "SELECT * FROM usuarios";
     List usuarios = await bd.rawQuery(sql);
     for (var usuario in usuarios) {
-      print("id: " +
-          usuario['id'].toString() +
-          "nome: " +
-          usuario['nome'].toString() +
-          "idade: " +
-          usuario['email'].toString() +
-          "senha: " +
-          usuario['senha'].toString());
+      print("id: ${usuario['id']}nome: ${usuario['nome']}idade: ${usuario['email']}senha: ${usuario['senha']}");
     }
   }
 
@@ -51,6 +44,17 @@ class Database_MyQuesLog {
         columns: ["id", "nome", "email", "senha"],
         where: "id = ?",
         whereArgs: [id]);
+  }
+
+  Future<bool> usuario_existe(String email, String senha) async {
+    Database bd = await recuperar_bancode_dados();
+    String sql = "SELECT * FROM usuarios WHERE email=$email AND senha=$senha";
+    List usuario = await bd.rawQuery(sql);
+    if(usuario.isNotEmpty){
+      return true;
+    } else {
+      return false;
+    }
   }
 
   excluir_usuario(int id) async {

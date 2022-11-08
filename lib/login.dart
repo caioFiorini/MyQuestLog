@@ -11,6 +11,7 @@ class Tela_Login extends StatefulWidget {
 }
 
 class _Tela_Login extends State<Tela_Login> {
+  Database_MyQuesLog database_myQuesLog = Database_MyQuesLog();
   @override
   Widget build(BuildContext context) {
     TextEditingController _controller_email = TextEditingController();
@@ -118,8 +119,12 @@ class _Tela_Login extends State<Tela_Login> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: ElevatedButton(
-                  onPressed: () {
-                    context.push('/login/home_page');
+                  onPressed: () async {
+                    if(await database_myQuesLog.usuario_existe(_controller_email.text, _controller_senha.text)){
+                      context.push('/login/home_page');
+                    } else {
+
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFC99F0D),
