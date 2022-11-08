@@ -53,7 +53,7 @@ class _HomePage extends State<HomePage> {
           ),
           CustomBottomBarItems(
             label: 'Usuário',
-            icon: Icons.calendar_today_outlined,
+            icon: Icons.account_circle,
           ),
         ],
       ),

@@ -9,7 +9,7 @@ class Database_MyQuesLog {
     var bd = await openDatabase(localBancoDados, version: 2,
         onCreate: (db, dbVersaoRecente) {
       String sql =
-          " CREATE TABLE usuarios (id INTEGER PRIMARY KEY AUTOINCREMENT, nome VARCHAR, email VARCHAR PRIMARY KEY, senha VARCHAR)";
+          " CREATE TABLE usuarios (id INTEGER PRIMARY KEY AUTOINCREMENT, nome VARCHAR, email VARCHAR PRIMARY, senha VARCHAR)";
       db.execute(sql);
     });
     print("aberto: " + bd.isOpen.toString());
