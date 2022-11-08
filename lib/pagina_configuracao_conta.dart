@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'database/database.dart';
+import 'Routers/routes.dart';
+import 'package:go_router/go_router.dart';
 
 class ContaConfig extends StatefulWidget {
   const ContaConfig({super.key});
@@ -12,6 +15,8 @@ class _ContaConfigState extends State<ContaConfig> {
   TextEditingController controller_email_update = TextEditingController();
   TextEditingController controller_senha_update = TextEditingController();
   TextEditingController controller_nova_senha_update = TextEditingController();
+
+  Database_MyQuesLog database_myQuesLog = Database_MyQuesLog();
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +71,10 @@ class _ContaConfigState extends State<ContaConfig> {
                     ),
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      database_myQuesLog
+                          .excluir_usuario(controller_email_delete.text);
+                    },
                     child: const Text(
                       "Deletar",
                       style: TextStyle(),
@@ -165,7 +173,16 @@ class _ContaConfigState extends State<ContaConfig> {
                 ],
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () async {
+                  if (await database_myQuesLog.usuario_existe(
+                      controller_email_update.text,
+                      controller_senha_update.text)) {
+                    database_myQuesLog.atualizar_usuario_senha(
+                        controller_email_update.text,
+                        controller_nova_senha_update.text);
+                    context.push('/login/home_page');
+                  } else {}
+                },
                 child: const Text(
                   "Atualizar Senha",
                   style: TextStyle(),
