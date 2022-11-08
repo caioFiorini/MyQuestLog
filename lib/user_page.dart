@@ -25,7 +25,7 @@ class _UserPageState extends State<UserPage> {
           ),
           iconTheme: const IconThemeData(color: Color(0xFFC99F0D))),
       drawer: Drawer(
-        backgroundColor: const Color(0xFF606060),
+        backgroundColor: const Color(0xFF2E2E2E),
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
@@ -33,12 +33,12 @@ class _UserPageState extends State<UserPage> {
               height: 110,
               child: DrawerHeader(
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Color(0xFF606060),
                 ),
                 child: Text(
                   'Menu',
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.white,
                     fontSize: 24,
                   ),
                 ),
