@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
+import 'database/database.dart';
 
 class Tela_Login extends StatefulWidget {
   @override
@@ -10,12 +11,13 @@ class Tela_Login extends StatefulWidget {
 }
 
 class _Tela_Login extends State<Tela_Login> {
-  Color c = const Color(0xFF993300);
-
+  Database_MyQuesLog database_myQuesLog = Database_MyQuesLog();
   @override
   Widget build(BuildContext context) {
+    TextEditingController _controller_email = TextEditingController();
+    TextEditingController _controller_senha = TextEditingController();
     return Scaffold(
-      backgroundColor: const Color(0xFFfcf0cf),
+      backgroundColor: const Color(0xFF606060),
       body: SafeArea(
         child: Center(
           child: Column(
@@ -32,7 +34,7 @@ class _Tela_Login extends State<Tela_Login> {
                 style: GoogleFonts.secularOne(
                   fontSize: 42.0,
                   fontWeight: FontWeight.bold,
-                  color: const Color(0xFF993300),
+                  color: const Color(0xFFC99F0D),
                 ),
               ),
 
@@ -41,7 +43,7 @@ class _Tela_Login extends State<Tela_Login> {
                 style: GoogleFonts.secularOne(
                     fontSize: 42.0,
                     fontWeight: FontWeight.bold,
-                    color: const Color(0xFF993300)),
+                    color: const Color(0xFFC99F0D)),
               ),
 
               const SizedBox(
@@ -52,7 +54,7 @@ class _Tela_Login extends State<Tela_Login> {
                 'Bem Vindo',
                 style: TextStyle(
                   fontSize: 16,
-                  color: Color(0xFF993300),
+                  color: Color(0xFFC99F0D),
                 ),
               ),
 
@@ -69,13 +71,14 @@ class _Tela_Login extends State<Tela_Login> {
                     border: Border.all(color: Colors.black12),
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  child: const Padding(
-                    padding: EdgeInsets.only(left: 20.0),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
                     child: TextField(
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Email',
                       ),
+                      controller: _controller_email,
                     ),
                   ),
                 ),
@@ -94,14 +97,15 @@ class _Tela_Login extends State<Tela_Login> {
                     border: Border.all(color: Colors.black12),
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  child: const Padding(
-                    padding: EdgeInsets.only(left: 20.0),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
                     child: TextField(
                       obscureText: true,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Password',
                       ),
+                      controller: _controller_senha,
                     ),
                   ),
                 ),
@@ -115,15 +119,22 @@ class _Tela_Login extends State<Tela_Login> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: ElevatedButton(
-                  onPressed: () => context.push('/login/home_page'),
+                  onPressed: () async {
+                    if (await database_myQuesLog.usuario_existe(
+                        _controller_email.text, _controller_senha.text)) {
+                      context.push('/login/home_page');
+                    } else {
+                      print("Usuário não encontrado");
+                    }
+                  },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF993300),
+                    backgroundColor: const Color(0xFFC99F0D),
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   ),
                   child: const Text(
                     "Login",
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Color(0xFF2E2E2E),
                     ),
                   ),
                 ),
@@ -139,7 +150,7 @@ class _Tela_Login extends State<Tela_Login> {
                   const Text(
                     'Não é Membro? ',
                     style: TextStyle(
-                      color: Colors.black87,
+                      color: Colors.white,
                       fontStyle: FontStyle.italic,
                     ),
                   ),

@@ -4,6 +4,7 @@ import 'package:myquestlog/paginaCabral.dart';
 import 'package:myquestlog/paginaJuliana.dart';
 import 'package:myquestlog/paginaVito.dart';
 import 'package:myquestlog/user_page.dart';
+import 'pagina_configuracao.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -23,14 +24,13 @@ class _HomePage extends State<HomePage> {
         children: const [
           UserPage(),
           PageJuliana(),
-          PageVito(),
           PaginaCabral(),
         ],
       ),
       bottomNavigationBar: CustomLineIndicatorBottomNavbar(
-        selectedColor: const Color(0xFF1e1e1f),
-        unSelectedColor: Colors.white,
-        backgroundColor: const Color(0xFF993300),
+        selectedColor: Colors.white,
+        unSelectedColor: const Color(0xFFC99F0D),
+        backgroundColor: const Color(0xFF606060),
         currentIndex: _selectedIndex,
         selectedIconSize: 20,
         onTap: (index) {
@@ -53,11 +53,7 @@ class _HomePage extends State<HomePage> {
           ),
           CustomBottomBarItems(
             label: 'Usuário',
-            icon: Icons.calendar_today_outlined,
-          ),
-          CustomBottomBarItems(
-            label: 'Loyalty',
-            icon: Icons.card_giftcard_rounded,
+            icon: Icons.account_circle,
           ),
         ],
       ),

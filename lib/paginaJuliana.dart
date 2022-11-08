@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'Routers/routes.dart';
+import 'package:go_router/go_router.dart';
 
 class PageJuliana extends StatefulWidget {
   const PageJuliana({super.key});
@@ -11,54 +13,52 @@ class _PageJulianaState extends State<PageJuliana> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFfcf0cf),
+      backgroundColor: const Color(0xFF2E2E2E),
       appBar: AppBar(
-        backgroundColor: const Color(0xFF993300),
-        automaticallyImplyLeading: true, //retira a seta de voltar
-        elevation: 2,
-        centerTitle: true,
-        title: const Text(
-          "Tarefas",
-          style: TextStyle(color: Colors.white),
-        ),
-      ),
+          backgroundColor: const Color(0xFF2E2E2E),
+          automaticallyImplyLeading: true, //retira a seta de voltar
+          elevation: 0,
+          centerTitle: true,
+          title: const Text(
+            "Tarefas",
+            style: TextStyle(color: Colors.white),
+          ),
+          iconTheme: const IconThemeData(color: Color(0xFFC99F0D))),
       drawer: Drawer(
-        backgroundColor: const Color(0xFF993300),
+        backgroundColor: const Color(0xFF2E2E2E),
         child: ListView(
           padding: EdgeInsets.zero,
-          children: const <Widget>[
-            SizedBox(
+          children: [
+            const SizedBox(
               height: 110,
               child: DrawerHeader(
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Color(0xFF606060),
                 ),
                 child: Text(
-                  'Drawer Header',
+                  'Menu',
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.white,
                     fontSize: 24,
                   ),
                 ),
               ),
             ),
             ListTile(
-              leading: Icon(Icons.message),
-              title: Text('Messages'),
+              leading: const Icon(Icons.settings),
+              title: TextButton(
+                onPressed: () => context.push(
+                    '/user_page/pagina_configuracao'), //modificar para ir para a página
+                child: const Text(
+                  "Configuração",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
               iconColor: Colors.white,
-              textColor: Colors.white,
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text('Profile'),
-              iconColor: Colors.white,
-              textColor: Colors.white,
-            ),
-            ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('Settings'),
-              iconColor: Colors.white,
-              textColor: Colors.white,
             ),
           ],
         ),
@@ -71,7 +71,7 @@ class _PageJulianaState extends State<PageJuliana> {
               borderRadius: BorderRadius.all(
                 Radius.circular(10),
               ),
-              color: Colors.white,
+              color: Color(0xFF606060),
             ),
             margin: const EdgeInsets.symmetric(
               vertical: 20,
@@ -90,6 +90,7 @@ class _PageJulianaState extends State<PageJuliana> {
                           "Tarefa1",
                           style: TextStyle(
                             fontSize: 18,
+                            color: Colors.white,
                           ),
                         ),
                       ),
@@ -105,7 +106,10 @@ class _PageJulianaState extends State<PageJuliana> {
                           horizontal: 40,
                           vertical: 10,
                         ),
-                        child: const Text("Ir para academia"),
+                        child: const Text(
+                          "Ir para academia",
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                     )
                   ],
@@ -118,7 +122,7 @@ class _PageJulianaState extends State<PageJuliana> {
               borderRadius: BorderRadius.all(
                 Radius.circular(10),
               ),
-              color: Colors.white,
+              color: Color(0xFF606060),
             ),
             margin: const EdgeInsets.symmetric(
               horizontal: 20,
@@ -134,9 +138,7 @@ class _PageJulianaState extends State<PageJuliana> {
                             horizontal: 20, vertical: 10),
                         child: const Text(
                           "Tarefa2",
-                          style: TextStyle(
-                            fontSize: 18,
-                          ),
+                          style: TextStyle(fontSize: 18, color: Colors.white),
                         ),
                       ),
                     ),
@@ -151,7 +153,10 @@ class _PageJulianaState extends State<PageJuliana> {
                           horizontal: 40,
                           vertical: 10,
                         ),
-                        child: const Text("Estudar Flutter"),
+                        child: const Text(
+                          "Estudar Flutter",
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                     )
                   ],
@@ -166,11 +171,11 @@ class _PageJulianaState extends State<PageJuliana> {
         label: const Text(
           "+",
           style: TextStyle(
-            color: Colors.white,
+            color: Color(0xFF2E2E2E),
             fontSize: 30,
           ),
         ),
-        backgroundColor: const Color(0xFF993300),
+        backgroundColor: const Color(0xFFC99F0D),
       ),
     );
   }
