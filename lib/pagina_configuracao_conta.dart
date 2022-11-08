@@ -24,7 +24,7 @@ class _ContaConfigState extends State<ContaConfig> {
       body: ListView(
         padding: const EdgeInsets.all(8),
         children: const <Widget>[
-          const SizedBox(
+          SizedBox(
             child: Text(
               "Digite o email para apagar a conta:",
               style: TextStyle(color: Colors.white, fontSize: 20),

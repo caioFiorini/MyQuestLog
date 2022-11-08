@@ -114,7 +114,7 @@ class _Registro extends State<Registro> {
                   database_myQuesLog.salvar_dados(controllerNome.text,
                       controllerEmail.text, controllerSenha.text);
                   //database_myQuesLog.salvar_dados(controllerNome.text);
-                  context.go('/registro/home_page');
+                  context.go('/');
                 },
                 child: const Text(
                   "Cadastrar",
