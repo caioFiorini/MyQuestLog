@@ -123,7 +123,9 @@ class _Tela_Login extends State<Tela_Login> {
                     if (await database_myQuesLog.usuario_existe(
                         _controller_email.text, _controller_senha.text)) {
                       context.push('/login/home_page');
-                    } else {}
+                    } else {
+                      print("Usuário não encontrado");
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFC99F0D),

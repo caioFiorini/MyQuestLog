@@ -74,6 +74,7 @@ class _ContaConfigState extends State<ContaConfig> {
                     onPressed: () {
                       database_myQuesLog
                           .excluir_usuario(controller_email_delete.text);
+                      context.push('/');
                     },
                     child: const Text(
                       "Deletar",
@@ -180,7 +181,7 @@ class _ContaConfigState extends State<ContaConfig> {
                     database_myQuesLog.atualizar_usuario_senha(
                         controller_email_update.text,
                         controller_nova_senha_update.text);
-                    context.push('/login/home_page');
+                    context.push('/');
                   } else {}
                 },
                 child: const Text(

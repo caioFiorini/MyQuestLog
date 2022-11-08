@@ -5,11 +5,11 @@ import 'package:path/path.dart';
 class Database_MyQuesLog {
   recuperar_bancode_dados() async {
     final caminhoBancoDados = await getDatabasesPath();
-    final localBancoDados = join(caminhoBancoDados, "bancoDados.bd");
+    final localBancoDados = join(caminhoBancoDados, "bancoDados2.bd");
     var bd = await openDatabase(localBancoDados, version: 1,
         onCreate: (db, dbVersaoRecente) {
       String sql =
-          " CREATE TABLE usuarios (id INTEGER PRIMARY KEY AUTOINCREMENT, email VARCHAR PRIMARY KEY, nome VARCHAR, senha VARCHAR)";
+          " CREATE TABLE usuarios (id INTEGER PRIMARY KEY AUTOINCREMENT, nome VARCHAR, email VARCHAR, senha VARCHAR)";
       db.execute(sql);
     });
     print("aberto: " + bd.isOpen.toString());
@@ -19,8 +19,8 @@ class Database_MyQuesLog {
   salvar_dados(String nome, String email, String senha) async {
     Database bd = await recuperar_bancode_dados();
     Map<String, dynamic> dadosUsuario = {
-      "email": email,
       "nome": nome,
+      "email": email,
       "senha": senha,
     };
     print(dadosUsuario);
@@ -35,26 +35,28 @@ class Database_MyQuesLog {
     List usuarios = await bd.rawQuery(sql);
     for (var usuario in usuarios) {
       print(
-          "id: ${usuario['id']}email: ${usuario['email']}nome: ${usuario['nome']}senha: ${usuario['senha']}");
+          "id: ${usuario['id']}nome: ${usuario['nome']}email: ${usuario['email']}senha: ${usuario['senha']}");
     }
   }
 
-  listar_um_usuario(int id) async {
+  listar_um_usuario(String email) async {
     Database bd = await recuperar_bancode_dados();
     List usuarios = await bd.query("usuarios",
-        columns: ["id", "email", "nome", "senha"],
-        where: "id = ?",
-        whereArgs: [id]);
+        columns: ["id", "nome", "email", "senha"],
+        where: "email = ?",
+        whereArgs: [email]);
+    print(usuarios);
   }
 
   Future<bool> usuario_existe(String email, String senha) async {
     Database bd = await recuperar_bancode_dados();
-    String sql = "SELECT * FROM usuarios WHERE email=$email AND senha=$senha";
-    List usuario = await bd.rawQuery(sql);
-
-    print(usuario);
-
-    if (usuario.isNotEmpty) {
+    List usuarios = await bd.query("usuarios",
+        columns: ["id", "nome", "email", "senha"],
+        where: "email = ? AND senha = ?",
+        whereArgs: [email, senha]);
+    print(usuarios);
+    listar_um_usuario(email);
+    if (usuarios.isNotEmpty) {
       return true;
     } else {
       return false;
@@ -74,8 +76,8 @@ class Database_MyQuesLog {
   atualizar_usuario(int id, String nome, String email, String senha) async {
     Database bd = await recuperar_bancode_dados();
     Map<String, dynamic> dadosUsuario = {
-      "email": email,
       "nome": nome,
+      "email": email,
       "senha": senha,
     };
     int retorno = await bd.update(

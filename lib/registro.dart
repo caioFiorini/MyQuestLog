@@ -57,7 +57,7 @@ class _Registro extends State<Registro> {
                 ),
               ),
               const SizedBox(
-                height: 2.0,
+                height: 10.0,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -80,7 +80,7 @@ class _Registro extends State<Registro> {
                 ),
               ),
               const SizedBox(
-                height: 2.0,
+                height: 10.0,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
