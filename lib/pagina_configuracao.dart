@@ -19,7 +19,7 @@ class PageConfigState extends State<PageConfig> {
           elevation: 0,
           centerTitle: true,
           title: const Text(
-            "My Quest Log",
+            "Configuração",
             style: TextStyle(color: Colors.white),
           ),
           iconTheme: const IconThemeData(color: Color(0xFFC99F0D))),
