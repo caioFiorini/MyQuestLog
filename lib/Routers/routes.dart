@@ -1,9 +1,9 @@
 import 'package:go_router/go_router.dart';
-import 'package:myquestlog/home_page.dart';
-import 'package:myquestlog/login.dart';
-import 'package:myquestlog/pagina_configuracao.dart';
-import 'package:myquestlog/pagina_configuracao_conta.dart';
-import 'package:myquestlog/registro.dart';
+import 'package:myquestlog/paginas/home_page.dart';
+import 'package:myquestlog/paginas/login.dart';
+import 'package:myquestlog/paginas/pagina_configuracao.dart';
+import 'package:myquestlog/paginas/pagina_configuracao_conta.dart';
+import 'package:myquestlog/paginas/registro.dart';
 
 final routes = GoRouter(
   routes: [
