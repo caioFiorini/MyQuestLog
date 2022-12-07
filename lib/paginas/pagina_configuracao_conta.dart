@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'database/database.dart';
-import 'Routers/routes.dart';
+import 'package:myquestlog/database/database.dart';
+import 'package:myquestlog/Routers/routes.dart';
 import 'package:go_router/go_router.dart';
 
 class ContaConfig extends StatefulWidget {
