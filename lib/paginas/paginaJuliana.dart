@@ -1,8 +1,12 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:myquestlog/Routers/routes.dart';
 import 'package:go_router/go_router.dart';
-import 'package:myquestlog/components/tarefas_user.dart';
+import 'package:myquestlog/components/tarefas_form.dart';
 import 'package:myquestlog/models/tarefas.dart';
+
+import '../components/tarefas_list.dart';
 
 class PageJuliana extends StatefulWidget {
   const PageJuliana({super.key});
@@ -15,6 +19,48 @@ const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
 
 class _PageJulianaState extends State<PageJuliana> {
   String dropdownValue = list.first;
+
+  final List<Tarefas> _tarefas = [];
+
+  List<Tarefas> get _recentTarefas {
+    return _tarefas.where((tf) {
+      return tf.data.isAfter(DateTime.now().subtract(
+        const Duration(days: 7),
+      ));
+    }).toList();
+  }
+
+  _addTarefa(String nomeTarefa, String descricaoTarefa, int tipoTarefa,
+      DateTime date) {
+    final novaTarefa = Tarefas(
+      id: Random().nextDouble().toString(),
+      nome_tarefa: nomeTarefa,
+      descricao_tarefa: descricaoTarefa,
+      tipo_tarefa: tipoTarefa,
+      data: date,
+    );
+
+    setState(() {
+      _tarefas.add(novaTarefa);
+    });
+
+    Navigator.of(context).pop();
+  }
+
+  _removeTarefas(String id) {
+    setState(() {
+      _tarefas.removeWhere((tr) => tr.id == id);
+    });
+  }
+
+  _open_transaction_modal(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (_) {
+        return TarefasForm(_addTarefa);
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +75,14 @@ class _PageJulianaState extends State<PageJuliana> {
             "Tarefas",
             style: TextStyle(color: Colors.white),
           ),
+          actions: <Widget>[
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.add,
+              ),
+            )
+          ],
           iconTheme: const IconThemeData(color: Color(0xFFC99F0D))),
       drawer: Drawer(
         backgroundColor: const Color(0xFF2E2E2E),
@@ -69,21 +123,18 @@ class _PageJulianaState extends State<PageJuliana> {
           ],
         ),
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(8),
-        children: const <Widget>[
-          TarefasUser(),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
-        label: const Text(
-          "+",
-          style: TextStyle(
-            color: Color(0xFF2E2E2E),
-            fontSize: 30,
-          ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              child: TarefasList(_tarefas, _removeTarefas),
+            ),
+          ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => _open_transaction_modal(context),
+        child: Icon(Icons.add),
         backgroundColor: const Color(0xFFC99F0D),
       ),
     );
