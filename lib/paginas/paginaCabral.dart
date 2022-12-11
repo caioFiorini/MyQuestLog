@@ -10,6 +10,11 @@ class PaginaCabral extends StatefulWidget {
   @override
   State<PaginaCabral> createState() => _PaginaCabralState();
 }
+//TODO: Tornar esses valores alteráveis
+//TODO: LIGAR APP AO SHARED PREFERENCES
+int userXP = 100;
+String userXPText = userXP.toString();
+double userXPPercentage = userXP/1000;
 
 double attrPadding = 25;
 
@@ -24,7 +29,7 @@ class _PaginaCabralState extends State<PaginaCabral> {
           elevation: 0,
           centerTitle: true,
           title: const Text(
-            "Atributos",
+            "Seus Status",
             style: TextStyle(color: Colors.white),
           ),
           iconTheme: const IconThemeData(color: Color(0xFFC99F0D)),
@@ -99,7 +104,7 @@ class _PaginaCabralState extends State<PaginaCabral> {
                           radius: 90.0,
                           lineWidth: 13.0,
                           animation: true,
-                          percent: 0.75,
+                          percent: userXPPercentage, // XP Porcentagem
                           circularStrokeCap: CircularStrokeCap.round,
                           backgroundColor: const Color(0xFF606060),
                           progressColor: const Color(0xFFC99F0D),
@@ -110,9 +115,9 @@ class _PaginaCabralState extends State<PaginaCabral> {
                     ),
                   )
                 ]),
-                const Text(
-                  "750 xp",
-                  style: TextStyle(
+                Text(
+                  '$userXPText xp', // XP Porcentagem Número
+                  style: const TextStyle(
                       fontSize: 32,
                       color: Color(0xFFC99F0D),
                       fontWeight: FontWeight.bold),
