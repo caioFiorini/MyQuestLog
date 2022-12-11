@@ -16,7 +16,7 @@ class _Tela_Login extends State<Tela_Login> {
   login({String email = '', String senha = ''}) async {
     if(email != '' && senha != '') {
       await dbSup.checkUser(email, senha);
-      debugPrint('Usuário Existe? -> $userSupabaseLogado');
+      //debugPrint('Usuário Existe? -> $userSupabaseLogado');
       if(userSupabaseLogado == true){
         context.push('/login/home_page');
       }

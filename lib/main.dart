@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'Routers/routes.dart';
 import 'package:myquestlog/database/dbSupabase.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:myquestlog/user/usuario.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,6 +20,7 @@ final supabase = Supabase.instance.client;
 var userSupabaseId = "";
 var userSupabaseLogado = false;
 final dbSupabase dbSup = dbSupabase();
+late final Usuario usuario;
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
