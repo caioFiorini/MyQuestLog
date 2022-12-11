@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:myquestlog/utils/helper_widgets.dart';
 
 class TarefasForm extends StatefulWidget {
-  const TarefasForm({super.key});
+  final void Function(String, String, int, DateTime) onSubmit;
+  TarefasForm(this.onSubmit, {Key? key}) : super(key: key);
 
   @override
   State<TarefasForm> createState() => _TarefasFormState();
@@ -10,8 +11,21 @@ class TarefasForm extends StatefulWidget {
 
 class _TarefasFormState extends State<TarefasForm> {
   final _nome_tarefa_controller = TextEditingController();
-  TextEditingController _tipo_tarefa_controller = TextEditingController();
   final _descricao_tarefa_controller = TextEditingController();
+  int value = 0;
+  String? titulo, descricao;
+  final DateTime _selectedDate = DateTime.now();
+
+  _submitForm() {
+    titulo = _nome_tarefa_controller.text;
+    descricao = _descricao_tarefa_controller.text;
+
+    if (titulo == null || descricao == null || value <= 0) {
+      return;
+    }
+    widget.onSubmit(titulo!, descricao!, value, _selectedDate);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -63,8 +77,7 @@ class _TarefasFormState extends State<TarefasForm> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                  onPressed: (() =>
-                      _tipo_tarefa_controller = 1 as TextEditingController),
+                  onPressed: (() => value = value + 1),
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 32,
@@ -73,8 +86,7 @@ class _TarefasFormState extends State<TarefasForm> {
                   child: const Text("Força"),
                 ),
                 ElevatedButton(
-                  onPressed: (() =>
-                      _tipo_tarefa_controller = 1 as TextEditingController),
+                  onPressed: (() => value = value + 1),
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 25,
@@ -83,8 +95,7 @@ class _TarefasFormState extends State<TarefasForm> {
                   child: const Text("Destreza"),
                 ),
                 ElevatedButton(
-                  onPressed: (() =>
-                      _tipo_tarefa_controller = 1 as TextEditingController),
+                  onPressed: (() => value = value + 1),
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 20,
@@ -98,18 +109,15 @@ class _TarefasFormState extends State<TarefasForm> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                  onPressed: (() =>
-                      _tipo_tarefa_controller = 1 as TextEditingController),
+                  onPressed: (() => value = value + 1),
                   child: const Text("Percepção"),
                 ),
                 ElevatedButton(
-                  onPressed: (() =>
-                      _tipo_tarefa_controller = 1 as TextEditingController),
+                  onPressed: (() => value = value + 1),
                   child: const Text("Inteligencia"),
                 ),
                 ElevatedButton(
-                  onPressed: (() =>
-                      _tipo_tarefa_controller = 1 as TextEditingController),
+                  onPressed: (() => value = value + 1),
                   child: const Text("Agilidade"),
                 ),
               ],
@@ -119,7 +127,7 @@ class _TarefasFormState extends State<TarefasForm> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: _submitForm,
                   child: const Text("Cadastrar Tarefa"),
                 ),
               ],
