@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
 import 'package:myquestlog/database/database.dart';
+import 'package:myquestlog/main.dart';
 
 class Registro extends StatefulWidget {
   @override
@@ -11,13 +12,19 @@ class Registro extends StatefulWidget {
 }
 
 class _Registro extends State<Registro> {
-  // final valueController = TextEditingController();
-  Database_MyQuesLog database_myQuesLog = Database_MyQuesLog();
+  void registrar({String nome = '', String email = '', String senha = ''}) async{
+    debugPrint('Nome: $nome \nEmail: $email \nSenha: $senha');
+    if(nome != '' && email != '' && senha != '') {
+      dbSup.createUser(email, senha, nome);
+      context.go('/');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    TextEditingController controllerNome = TextEditingController();
-    TextEditingController controllerEmail = TextEditingController();
-    TextEditingController controllerSenha = TextEditingController();
+    TextEditingController controllerNome = TextEditingController(text: '');
+    TextEditingController controllerEmail = TextEditingController(text: '');
+    TextEditingController controllerSenha = TextEditingController(text: '');
     return Scaffold(
       backgroundColor: const Color(0xFF606060),
       body: SafeArea(
@@ -111,10 +118,7 @@ class _Registro extends State<Registro> {
                   backgroundColor: const Color(0xFFC99F0D),
                 ),
                 onPressed: () {
-                  database_myQuesLog.salvar_dados(controllerNome.text,
-                      controllerEmail.text, controllerSenha.text);
-                  //database_myQuesLog.salvar_dados(controllerNome.text);
-                  context.go('/');
+                  registrar(nome: controllerNome.text, email: controllerEmail.text, senha:controllerSenha.text);
                 },
                 child: const Text(
                   "Cadastrar",

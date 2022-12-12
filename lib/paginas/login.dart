@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
 import 'package:myquestlog/database/database.dart';
+import 'package:myquestlog/main.dart';
 
 class Tela_Login extends StatefulWidget {
   @override
@@ -11,11 +12,21 @@ class Tela_Login extends StatefulWidget {
 }
 
 class _Tela_Login extends State<Tela_Login> {
-  Database_MyQuesLog database_myQuesLog = Database_MyQuesLog();
+
+  login({String email = '', String senha = ''}) async {
+    if(email != '' && senha != '') {
+      await dbSup.checkUser(email, senha);
+      //debugPrint('Usuário Existe? -> $userSupabaseLogado');
+      if(userSupabaseLogado == true){
+        context.push('/login/home_page');
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    TextEditingController _controller_email = TextEditingController();
-    TextEditingController _controller_senha = TextEditingController();
+    TextEditingController _controller_email = TextEditingController(text: '');
+    TextEditingController _controller_senha = TextEditingController(text: '');
     return Scaffold(
       backgroundColor: const Color(0xFF606060),
       body: SafeArea(
@@ -119,13 +130,8 @@ class _Tela_Login extends State<Tela_Login> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: ElevatedButton(
-                  onPressed: () async {
-                    if (await database_myQuesLog.usuario_existe(
-                        _controller_email.text, _controller_senha.text)) {
-                      context.push('/login/home_page');
-                    } else {
-                      print("Usuário não encontrado");
-                    }
+                  onPressed: () {
+                    login(email: _controller_email.text, senha: _controller_senha.text);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFC99F0D),

@@ -11,6 +11,11 @@ class PaginaCabral extends StatefulWidget {
   @override
   State<PaginaCabral> createState() => _PaginaCabralState();
 }
+//TODO: Tornar esses valores alteráveis
+//TODO: LIGAR APP AO SHARED PREFERENCES
+int userXP = 100;
+String userXPText = userXP.toString();
+double userXPPercentage = userXP/1000;
 
 double attrPadding = 25;
 
@@ -114,7 +119,7 @@ class _PaginaCabralState extends State<PaginaCabral> {
           elevation: 0,
           centerTitle: true,
           title: const Text(
-            "Atributos",
+            "Seus Status",
             style: TextStyle(color: Colors.white),
           ),
           iconTheme: const IconThemeData(color: Color(0xFFC99F0D)),
