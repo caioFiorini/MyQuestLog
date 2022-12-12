@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:lottie/lottie.dart';
 import 'package:myquestlog/Routers/routes.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:go_router/go_router.dart';
 
 class PaginaCabral extends StatefulWidget {
@@ -19,6 +20,95 @@ double userXPPercentage = userXP/1000;
 double attrPadding = 25;
 
 class _PaginaCabralState extends State<PaginaCabral> {
+  late final String? _textoSalvo;
+  late final int? _xp_salvo;
+  late int forca;
+  late int destreza;
+  late int carisma;
+  late int percep;
+  late int inteli;
+  late int agilidade;
+
+  _recuperarDados() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _textoSalvo = prefs.getString("nome") ?? "Sem Tarefas";
+      _xp_salvo = prefs.getInt("Xp") ?? 0;
+      forca = prefs.getInt("Força") ?? 0;
+      destreza = prefs.getInt("Destreza") ?? 0;
+      carisma = prefs.getInt("Carisma") ?? 0;
+      percep = prefs.getInt("Percep") ?? 0;
+      inteli = prefs.getInt("Inteli") ?? 0;
+      agilidade = prefs.getInt("Agili") ?? 0;
+    });
+  }
+
+  int _indicadorDeNivel() {
+    int nivel = 1;
+    int? xp = _xp_salvo;
+    if (xp! > 100) {
+      nivel++;
+    }
+    if (xp > 200) {
+      nivel++;
+    }
+    if (xp > 300) {
+      nivel++;
+    }
+    if (xp > 400) {
+      nivel++;
+    }
+    if (xp > 500) {
+      nivel++;
+    }
+    if (xp > 600) {
+      nivel++;
+    }
+    if (xp > 700) {
+      nivel++;
+    }
+    if (xp > 800) {
+      nivel++;
+    }
+    if (xp > 900) {
+      nivel++;
+    }
+    if (xp > 1000) {
+      nivel++;
+    }
+    if (xp > 1100) {
+      nivel++;
+    }
+    if (xp > 1200) {
+      nivel++;
+    }
+    if (xp > 1300) {
+      nivel++;
+    }
+    if (xp > 1400) {
+      nivel++;
+    }
+    if (xp > 1500) {
+      nivel++;
+    }
+    if (xp > 1600) {
+      nivel++;
+    }
+    if (xp > 1700) {
+      nivel++;
+    }
+    if (xp > 1800) {
+      nivel++;
+    }
+    if (xp > 1900) {
+      nivel++;
+    }
+    if (xp > 2000) {
+      nivel++;
+    }
+    return nivel;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,10 +180,10 @@ class _PaginaCabralState extends State<PaginaCabral> {
                           Radius.circular(100),
                         ),
                       ),
-                      child: const Text(
-                        "13",
-                        style:
-                            TextStyle(fontSize: 24, color: Color(0xFFC99F0D)),
+                      child: Text(
+                        "${_indicadorDeNivel()}",
+                        style: const TextStyle(
+                            fontSize: 24, color: Color(0xFFC99F0D)),
                       ),
                     ),
                   ),
@@ -104,7 +194,7 @@ class _PaginaCabralState extends State<PaginaCabral> {
                           radius: 90.0,
                           lineWidth: 13.0,
                           animation: true,
-                          percent: userXPPercentage, // XP Porcentagem
+                          percent: (_xp_salvo! / 100 * _indicadorDeNivel()),
                           circularStrokeCap: CircularStrokeCap.round,
                           backgroundColor: const Color(0xFF606060),
                           progressColor: const Color(0xFFC99F0D),
@@ -116,7 +206,7 @@ class _PaginaCabralState extends State<PaginaCabral> {
                   )
                 ]),
                 Text(
-                  '$userXPText xp', // XP Porcentagem Número
+                  "${_xp_salvo!} xp",
                   style: const TextStyle(
                       fontSize: 32,
                       color: Color(0xFFC99F0D),
@@ -155,7 +245,7 @@ class _PaginaCabralState extends State<PaginaCabral> {
                                         width: 100,
                                         lineHeight: 8,
                                         animation: true,
-                                        percent: 0.70,
+                                        percent: forca / 100,
                                         backgroundColor:
                                             const Color(0xFF606060),
                                         progressColor: const Color(0xFFC99F0D),
@@ -179,7 +269,7 @@ class _PaginaCabralState extends State<PaginaCabral> {
                                         width: 100,
                                         lineHeight: 8,
                                         animation: true,
-                                        percent: 0.30,
+                                        percent: destreza / 100,
                                         backgroundColor:
                                             const Color(0xFF606060),
                                         progressColor: const Color(0xFFC99F0D),
@@ -201,7 +291,7 @@ class _PaginaCabralState extends State<PaginaCabral> {
                                         width: 100,
                                         lineHeight: 8,
                                         animation: true,
-                                        percent: 0.20,
+                                        percent: carisma / 100,
                                         backgroundColor:
                                             const Color(0xFF606060),
                                         progressColor: const Color(0xFFC99F0D),
@@ -228,7 +318,7 @@ class _PaginaCabralState extends State<PaginaCabral> {
                                         width: 100,
                                         lineHeight: 8,
                                         animation: true,
-                                        percent: 0.15,
+                                        percent: percep / 100,
                                         backgroundColor:
                                             const Color(0xFF606060),
                                         progressColor: const Color(0xFFC99F0D),
@@ -250,7 +340,7 @@ class _PaginaCabralState extends State<PaginaCabral> {
                                         width: 100,
                                         lineHeight: 8,
                                         animation: true,
-                                        percent: 0.45,
+                                        percent: inteli / 100,
                                         backgroundColor:
                                             const Color(0xFF606060),
                                         progressColor: const Color(0xFFC99F0D),
@@ -272,7 +362,7 @@ class _PaginaCabralState extends State<PaginaCabral> {
                                         width: 100,
                                         lineHeight: 8,
                                         animation: true,
-                                        percent: 0.95,
+                                        percent: agilidade / 100,
                                         backgroundColor:
                                             const Color(0xFF606060),
                                         progressColor: const Color(0xFFC99F0D),

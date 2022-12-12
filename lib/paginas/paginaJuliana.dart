@@ -5,7 +5,6 @@ import 'package:myquestlog/Routers/routes.dart';
 import 'package:go_router/go_router.dart';
 import 'package:myquestlog/components/tarefas_form.dart';
 import 'package:myquestlog/models/tarefas.dart';
-
 import '../components/tarefas_list.dart';
 
 class PageJuliana extends StatefulWidget {
@@ -15,12 +14,10 @@ class PageJuliana extends StatefulWidget {
   State<PageJuliana> createState() => _PageJulianaState();
 }
 
-const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
-
 class _PageJulianaState extends State<PageJuliana> {
-  String dropdownValue = list.first;
-
   final List<Tarefas> _tarefas = [];
+  late final String? _textoSalvo;
+  late final int? _xp_salvo;
 
   List<Tarefas> get _recentTarefas {
     return _tarefas.where((tf) {
@@ -30,12 +27,10 @@ class _PageJulianaState extends State<PageJuliana> {
     }).toList();
   }
 
-  _addTarefa(String nomeTarefa, String descricaoTarefa, int tipoTarefa,
-      DateTime date) {
+  _addTarefa(String nomeTarefa, int tipoTarefa, DateTime date) {
     final novaTarefa = Tarefas(
       id: Random().nextDouble().toString(),
       nome_tarefa: nomeTarefa,
-      descricao_tarefa: descricaoTarefa,
       tipo_tarefa: tipoTarefa,
       data: date,
     );
@@ -47,9 +42,9 @@ class _PageJulianaState extends State<PageJuliana> {
     Navigator.of(context).pop();
   }
 
-  _removeTarefas(String id) {
+  _removeTarefas(String nomeTarefa) {
     setState(() {
-      _tarefas.removeWhere((tr) => tr.id == id);
+      _tarefas.removeWhere((tf) => tf.nome_tarefa == nomeTarefa);
     });
   }
 
@@ -75,14 +70,6 @@ class _PageJulianaState extends State<PageJuliana> {
             "Tarefas",
             style: TextStyle(color: Colors.white),
           ),
-          actions: <Widget>[
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.add,
-              ),
-            )
-          ],
           iconTheme: const IconThemeData(color: Color(0xFFC99F0D))),
       drawer: Drawer(
         backgroundColor: const Color(0xFF2E2E2E),
