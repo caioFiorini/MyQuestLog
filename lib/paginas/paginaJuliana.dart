@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:myquestlog/Routers/routes.dart';
 import 'package:go_router/go_router.dart';
 import 'package:myquestlog/components/tarefas_form.dart';
+import 'package:myquestlog/main.dart';
 import 'package:myquestlog/models/tarefas.dart';
 import '../components/tarefas_list.dart';
 
@@ -15,7 +16,7 @@ class PageJuliana extends StatefulWidget {
 }
 
 class _PageJulianaState extends State<PageJuliana> {
-  final List<Tarefas> _tarefas = [];
+  late List<Tarefas> _tarefas = [];
   late final String? _textoSalvo;
   late final int? _xp_salvo;
 
@@ -25,6 +26,12 @@ class _PageJulianaState extends State<PageJuliana> {
         const Duration(days: 7),
       ));
     }).toList();
+  }
+
+  _carrega_tarefas() async {
+    setState(() {
+      this._tarefas = tarefas.listar_tarefas() as List<Tarefas>;
+    });
   }
 
   _addTarefa(String nomeTarefa, int tipoTarefa, DateTime date) {
@@ -45,6 +52,7 @@ class _PageJulianaState extends State<PageJuliana> {
   _removeTarefas(String nomeTarefa) {
     setState(() {
       _tarefas.removeWhere((tf) => tf.nome_tarefa == nomeTarefa);
+      tarefas.excluir_tarefa(nomeTarefa);
     });
   }
 

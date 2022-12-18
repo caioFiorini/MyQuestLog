@@ -4,6 +4,7 @@ import 'Routers/routes.dart';
 import 'package:myquestlog/database/dbSupabase.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:myquestlog/user/usuario.dart';
+import 'database/database.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,6 +22,7 @@ var userSupabaseId = "";
 var userSupabaseLogado = false;
 final dbSupabase dbSup = dbSupabase();
 late final Usuario usuario;
+late final Database_MyQuesLog tarefas = Database_MyQuesLog();
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);

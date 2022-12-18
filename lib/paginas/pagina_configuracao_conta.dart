@@ -72,8 +72,8 @@ class _ContaConfigState extends State<ContaConfig> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      database_myQuesLog
-                          .excluir_usuario(controller_email_delete.text);
+                      /*database_myQuesLog
+                          .excluir_usuario(controller_email_delete.text);*/
                       context.push('/');
                     },
                     child: const Text(
@@ -175,14 +175,14 @@ class _ContaConfigState extends State<ContaConfig> {
               ),
               ElevatedButton(
                 onPressed: () async {
-                  if (await database_myQuesLog.usuario_existe(
+                  /*if (await database_myQuesLog.usuario_existe(
                       controller_email_update.text,
                       controller_senha_update.text)) {
                     database_myQuesLog.atualizar_usuario_senha(
                         controller_email_update.text,
                         controller_nova_senha_update.text);
                     context.push('/');
-                  } else {}
+                  } else {}*/
                 },
                 child: const Text(
                   "Atualizar Senha",

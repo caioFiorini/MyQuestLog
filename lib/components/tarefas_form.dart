@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:myquestlog/main.dart';
 import 'package:myquestlog/utils/helper_widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:myquestlog/database/database.dart';
 
 class TarefasForm extends StatefulWidget {
   final void Function(String, int, DateTime) onSubmit;
@@ -23,31 +25,11 @@ class _TarefasFormState extends State<TarefasForm> {
   final DateTime _selectedDate = DateTime.now();
   late final String? _textoSalvo;
   late final int? _xp_salvo;
-  int forca = 1;
-  int destreza = 1;
-  int carisma = 1;
-  int percep = 1;
-  int inteli = 1;
-  int agilidade = 1;
-
-  _salvarDados() async {
-    String valorDigitado = _nome_tarefa_controller.text;
-    int xp = value;
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString("nomeTarefa", valorDigitado);
-    await prefs.setInt("Xp", xp); // a chave será usada para recuperar dados
-    await prefs.setInt("Força", forca);
-    await prefs.setInt("Destreza", destreza);
-    await prefs.setInt("Carisma", carisma);
-    await prefs.setInt("Percep", percep);
-    await prefs.setInt("Inteli", inteli);
-    await prefs.setInt("Agili", agilidade);
-  }
 
   _submitForm() {
     titulo = _nome_tarefa_controller.text;
 
-    _salvarDados();
+    tarefas.salvar_dados(_nome_tarefa_controller.text, value, _selectedDate);
 
     if (titulo == null || value <= 0) {
       return;
@@ -110,7 +92,6 @@ class _TarefasFormState extends State<TarefasForm> {
                       ? () {
                           setState(() {
                             value = value + 1;
-                            forca++;
                             botao_f = false;
                           });
                         }
@@ -126,7 +107,6 @@ class _TarefasFormState extends State<TarefasForm> {
                       ? () {
                           setState(() {
                             value = value + 1;
-                            destreza++;
                             botao_d = false;
                           });
                         }
@@ -143,7 +123,6 @@ class _TarefasFormState extends State<TarefasForm> {
                       ? () {
                           setState(() {
                             value = value + 1;
-                            carisma++;
                             botao_c = false;
                           });
                         }
@@ -165,7 +144,6 @@ class _TarefasFormState extends State<TarefasForm> {
                       ? () {
                           setState(() {
                             value = value + 1;
-                            percep++;
                             botao_p = false;
                           });
                         }
@@ -177,7 +155,6 @@ class _TarefasFormState extends State<TarefasForm> {
                       ? () {
                           setState(() {
                             value = value + 1;
-                            inteli++;
                             botao_i = false;
                           });
                         }
@@ -189,7 +166,6 @@ class _TarefasFormState extends State<TarefasForm> {
                       ? () {
                           setState(() {
                             value = value + 1;
-                            agilidade++;
                             botao_a = false;
                           });
                         }

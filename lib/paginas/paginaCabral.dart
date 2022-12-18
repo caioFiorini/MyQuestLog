@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:myquestlog/main.dart';
+import 'package:myquestlog/user/usuario.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:lottie/lottie.dart';
 import 'package:myquestlog/Routers/routes.dart';
@@ -11,11 +13,12 @@ class PaginaCabral extends StatefulWidget {
   @override
   State<PaginaCabral> createState() => _PaginaCabralState();
 }
+
 //TODO: Tornar esses valores alteráveis
 //TODO: LIGAR APP AO SHARED PREFERENCES
 int userXP = 100;
 String userXPText = userXP.toString();
-double userXPPercentage = userXP/1000;
+double userXPPercentage = userXP / 1000;
 
 double attrPadding = 25;
 
@@ -43,70 +46,19 @@ class _PaginaCabralState extends State<PaginaCabral> {
     });
   }
 
-  int _indicadorDeNivel() {
-    int nivel = 1;
-    int? xp = _xp_salvo;
-    if (xp! > 100) {
-      nivel++;
+  void _indicadorDeNivel() async {
+    if (usuario.xp > 100 * usuario.nivel) {
+      usuario.nivel++;
+      if (usuario.nivel % 2 == 0) {
+        usuario.atributos.forca++;
+        usuario.atributos.destreza++;
+        usuario.atributos.inteligencia++;
+      } else {
+        usuario.atributos.carisma++;
+        usuario.atributos.percepcao++;
+        usuario.atributos.agilidade++;
+      }
     }
-    if (xp > 200) {
-      nivel++;
-    }
-    if (xp > 300) {
-      nivel++;
-    }
-    if (xp > 400) {
-      nivel++;
-    }
-    if (xp > 500) {
-      nivel++;
-    }
-    if (xp > 600) {
-      nivel++;
-    }
-    if (xp > 700) {
-      nivel++;
-    }
-    if (xp > 800) {
-      nivel++;
-    }
-    if (xp > 900) {
-      nivel++;
-    }
-    if (xp > 1000) {
-      nivel++;
-    }
-    if (xp > 1100) {
-      nivel++;
-    }
-    if (xp > 1200) {
-      nivel++;
-    }
-    if (xp > 1300) {
-      nivel++;
-    }
-    if (xp > 1400) {
-      nivel++;
-    }
-    if (xp > 1500) {
-      nivel++;
-    }
-    if (xp > 1600) {
-      nivel++;
-    }
-    if (xp > 1700) {
-      nivel++;
-    }
-    if (xp > 1800) {
-      nivel++;
-    }
-    if (xp > 1900) {
-      nivel++;
-    }
-    if (xp > 2000) {
-      nivel++;
-    }
-    return nivel;
   }
 
   @override
@@ -181,7 +133,7 @@ class _PaginaCabralState extends State<PaginaCabral> {
                         ),
                       ),
                       child: Text(
-                        "${_indicadorDeNivel()}",
+                        "${usuario.nivel}",
                         style: const TextStyle(
                             fontSize: 24, color: Color(0xFFC99F0D)),
                       ),
@@ -194,7 +146,7 @@ class _PaginaCabralState extends State<PaginaCabral> {
                           radius: 90.0,
                           lineWidth: 13.0,
                           animation: true,
-                          percent: (_xp_salvo! / 100 * _indicadorDeNivel()),
+                          percent: (_xp_salvo! / 100 * usuario.nivel),
                           circularStrokeCap: CircularStrokeCap.round,
                           backgroundColor: const Color(0xFF606060),
                           progressColor: const Color(0xFFC99F0D),
