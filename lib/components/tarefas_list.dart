@@ -4,9 +4,9 @@ import 'package:myquestlog/utils/helper_widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TarefasList extends StatelessWidget {
-  final List<Tarefas> tarefas;
+  List<Tarefas> tarefas = [];
   final void Function(String) onRemove;
-  const TarefasList(this.tarefas, this.onRemove, {Key? key}) : super(key: key);
+  TarefasList(this.tarefas, this.onRemove, {Key? key}) : super(key: key);
 
   _removerDados() async {
     final prefs = await SharedPreferences.getInstance();
