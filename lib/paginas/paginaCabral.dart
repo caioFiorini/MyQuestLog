@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:myquestlog/main.dart';
-import 'package:myquestlog/user/usuario.dart';
+
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:lottie/lottie.dart';
 import 'package:myquestlog/Routers/routes.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:go_router/go_router.dart';
 
 class PaginaCabral extends StatefulWidget {
@@ -14,37 +13,16 @@ class PaginaCabral extends StatefulWidget {
   State<PaginaCabral> createState() => _PaginaCabralState();
 }
 
-//TODO: Tornar esses valores alteráveis
-//TODO: LIGAR APP AO SHARED PREFERENCES
-int userXP = 100;
-String userXPText = userXP.toString();
-double userXPPercentage = userXP / 1000;
-
 double attrPadding = 25;
 
 class _PaginaCabralState extends State<PaginaCabral> {
   late final String? _textoSalvo;
-  late final int? _xp_salvo;
   late int forca;
   late int destreza;
   late int carisma;
   late int percep;
   late int inteli;
   late int agilidade;
-
-  _recuperarDados() async {
-    final prefs = await SharedPreferences.getInstance();
-    setState(() {
-      _textoSalvo = prefs.getString("nome") ?? "Sem Tarefas";
-      _xp_salvo = prefs.getInt("Xp") ?? 0;
-      forca = prefs.getInt("Força") ?? 0;
-      destreza = prefs.getInt("Destreza") ?? 0;
-      carisma = prefs.getInt("Carisma") ?? 0;
-      percep = prefs.getInt("Percep") ?? 0;
-      inteli = prefs.getInt("Inteli") ?? 0;
-      agilidade = prefs.getInt("Agili") ?? 0;
-    });
-  }
 
   void _indicadorDeNivel() async {
     if (usuario.xp > 100 * usuario.nivel) {
@@ -146,7 +124,7 @@ class _PaginaCabralState extends State<PaginaCabral> {
                           radius: 90.0,
                           lineWidth: 13.0,
                           animation: true,
-                          percent: (_xp_salvo! / 100 * usuario.nivel),
+                          percent: (usuario.xp / (100 * usuario.nivel)),
                           circularStrokeCap: CircularStrokeCap.round,
                           backgroundColor: const Color(0xFF606060),
                           progressColor: const Color(0xFFC99F0D),
@@ -158,7 +136,7 @@ class _PaginaCabralState extends State<PaginaCabral> {
                   )
                 ]),
                 Text(
-                  "${_xp_salvo!} xp",
+                  "${usuario.xp} xp",
                   style: const TextStyle(
                       fontSize: 32,
                       color: Color(0xFFC99F0D),
@@ -197,7 +175,7 @@ class _PaginaCabralState extends State<PaginaCabral> {
                                         width: 100,
                                         lineHeight: 8,
                                         animation: true,
-                                        percent: forca / 100,
+                                        percent: usuario.atributos.forca / 100,
                                         backgroundColor:
                                             const Color(0xFF606060),
                                         progressColor: const Color(0xFFC99F0D),
@@ -221,7 +199,8 @@ class _PaginaCabralState extends State<PaginaCabral> {
                                         width: 100,
                                         lineHeight: 8,
                                         animation: true,
-                                        percent: destreza / 100,
+                                        percent:
+                                            usuario.atributos.destreza / 100,
                                         backgroundColor:
                                             const Color(0xFF606060),
                                         progressColor: const Color(0xFFC99F0D),
@@ -243,7 +222,8 @@ class _PaginaCabralState extends State<PaginaCabral> {
                                         width: 100,
                                         lineHeight: 8,
                                         animation: true,
-                                        percent: carisma / 100,
+                                        percent:
+                                            usuario.atributos.carisma / 100,
                                         backgroundColor:
                                             const Color(0xFF606060),
                                         progressColor: const Color(0xFFC99F0D),
@@ -270,7 +250,8 @@ class _PaginaCabralState extends State<PaginaCabral> {
                                         width: 100,
                                         lineHeight: 8,
                                         animation: true,
-                                        percent: percep / 100,
+                                        percent:
+                                            usuario.atributos.percepcao / 100,
                                         backgroundColor:
                                             const Color(0xFF606060),
                                         progressColor: const Color(0xFFC99F0D),
@@ -314,7 +295,8 @@ class _PaginaCabralState extends State<PaginaCabral> {
                                         width: 100,
                                         lineHeight: 8,
                                         animation: true,
-                                        percent: agilidade / 100,
+                                        percent:
+                                            usuario.atributos.agilidade / 100,
                                         backgroundColor:
                                             const Color(0xFF606060),
                                         progressColor: const Color(0xFFC99F0D),
