@@ -22,7 +22,6 @@ class _HomePage extends State<HomePage> {
       body: PageView(
         controller: pageController,
         children: const [
-          UserPage(),
           PageJuliana(),
           PaginaCabral(),
         ],
@@ -43,10 +42,6 @@ class _HomePage extends State<HomePage> {
         lineIndicatorWidth: 3,
         indicatorType: IndicatorType.Top,
         customBottomBarItems: [
-          CustomBottomBarItems(
-            icon: Icons.home,
-            label: 'Home',
-          ),
           CustomBottomBarItems(
             icon: Icons.list,
             label: 'Terefas',

@@ -18,19 +18,24 @@ class _PageJulianaState extends State<PageJuliana> {
   late List<Tarefas> _tarefas = [];
   late final String? _textoSalvo;
 
-  List<Tarefas> get _recentTarefas {
+  void initState() {
+    super.initState();
+    _carrega_tarefas();
+  }
+
+  _carrega_tarefas() async {
+    setState(() {
+      //String aux = tarefas.listar_tarefas() as String;
+    });
+  }
+
+  /*List<Tarefas> get _recentTarefas {
     return _tarefas.where((tf) {
       return tf.data.isAfter(DateTime.now().subtract(
         const Duration(days: 7),
       ));
     }).toList();
-  }
-
-  _carrega_tarefas() async {
-    setState(() {
-      this._tarefas = tarefas.listar_tarefas() as List<Tarefas>;
-    });
-  }
+  }*/
 
   _addTarefa(String nomeTarefa, int tipoTarefa, DateTime date) {
     final novaTarefa = Tarefas(
