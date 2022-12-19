@@ -24,7 +24,6 @@ class _TarefasFormState extends State<TarefasForm> {
   String? titulo;
   final DateTime _selectedDate = DateTime.now();
   late final String? _textoSalvo;
-  late final int? _xp_salvo;
 
   _submitForm() {
     titulo = _nome_tarefa_controller.text;
@@ -34,6 +33,9 @@ class _TarefasFormState extends State<TarefasForm> {
     if (titulo == null || value <= 0) {
       return;
     }
+    // Adiciona o xp ao usuário 
+    usuario.addXP(value);
+
     widget.onSubmit(titulo!, value, _selectedDate);
   }
 

@@ -16,28 +16,6 @@ class PaginaCabral extends StatefulWidget {
 double attrPadding = 25;
 
 class _PaginaCabralState extends State<PaginaCabral> {
-  late final String? _textoSalvo;
-  late int forca;
-  late int destreza;
-  late int carisma;
-  late int percep;
-  late int inteli;
-  late int agilidade;
-
-  void _indicadorDeNivel() async {
-    if (usuario.xp > 100 * usuario.nivel) {
-      usuario.nivel++;
-      if (usuario.nivel % 2 == 0) {
-        usuario.atributos.forca++;
-        usuario.atributos.destreza++;
-        usuario.atributos.inteligencia++;
-      } else {
-        usuario.atributos.carisma++;
-        usuario.atributos.percepcao++;
-        usuario.atributos.agilidade++;
-      }
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
