@@ -44,25 +44,31 @@ class Usuario {
     xp = uXp;
     atributos = Atributos();
   }
-  void levelUp(){
-    nivel++;
-    xp = 0;
-  }
+
   void updateAtributos(int forc, int dest, int cari, int perc, int inte, int agil){
     atributos.updateAllAtributos(forc, dest, cari, perc, inte, agil);
+
   }
+  void addXP(int addedXP) async {
+    usuario.xp += addedXP;
+    if (usuario.xp > 100 * usuario.nivel) {
+      usuario.nivel++;
+      if (usuario.nivel % 2 == 0) {
+        usuario.atributos.forca++;
+        usuario.atributos.destreza++;
+        usuario.atributos.inteligencia++;
+      } else {
+        usuario.atributos.carisma++;
+        usuario.atributos.percepcao++;
+        usuario.atributos.agilidade++;
+      }
+      dbSup.updateAtributos();
+    }
+  }
+
   @override
   String toString() {
-    return "\n------------------------------"
-          + "\nID: " + userId
-          + "\nNível: " + nivel.toString()
-          + "\nXP: " + xp.toString()
-          + "\nForça: " + atributos.forca.toString()
-          + "\nDestreza: " + atributos.destreza.toString()
-          + "\nCarisma: " + atributos.carisma.toString()
-          + "\nPercepção: " + atributos.percepcao.toString()
-          + "\nInteligência: " + atributos.inteligencia.toString()
-          + "\nAgilidade: " + atributos.agilidade.toString()
-        + "\n------------------------------\n";
+    return "${"\n------------------------------"
+          + "\nID: " + userId}\nNível: $nivel\nXP: $xp\nForça: ${atributos.forca}\nDestreza: ${atributos.destreza}\nCarisma: ${atributos.carisma}\nPercepção: ${atributos.percepcao}\nInteligência: ${atributos.inteligencia}\nAgilidade: ${atributos.agilidade}\n------------------------------\n";
   }
 }

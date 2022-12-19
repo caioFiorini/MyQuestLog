@@ -20,8 +20,80 @@ class dbSupabase {
       // Atualiza classe global do id usuario Supabase
       userSupabaseId = authRes.user!.id;
       //debugPrint('\n\nUser ID: $userSupabaseId\n\n'); // Apenas para teste
-    } catch (error) {
+    } on AuthException {
+      deletedAccountLogin(email);
+    } catch (error){
       debugPrint('Erro ao fazer cadastro -> $error');
+    }
+  }
+
+  // Como o supabase não permite deletar o usuário auth, mudamos o atributo "deletado" para true
+  // Portanto, se ele quiser recuperar a conta, deve se registrar novamente, e nessa hora, o atributo
+  // "deletado ficará como false"
+  deletedAccountLogin(String email) async{
+    try {
+      Map<String, dynamic> userInfo = await supabase
+          .from('users')
+          .select('*')
+          .eq('email', email)
+          .single();
+      if(userInfo["deletado"] ==  true) {
+        await supabase.from("users").update({
+          'deletado': false,
+          'level':1,
+          'xp': 0,
+          'forca': 0,
+          'destreza': 0,
+          'carisma': 0,
+          'percepcao': 0,
+          'inteligencia': 0,
+          'agilidade': 0}).match(
+            {'email': email});
+      }
+    } catch (error) {
+      debugPrint('Erro ao fazer Relogin de conta deletada: -> $error');
+    }
+  }
+
+  deleteUser() async{
+    try{
+      await supabase.auth.signOut();
+      await supabase.from("users").update({'deletado': true}).match({'user_id': userSupabaseId});
+      userSupabaseId = "";
+      userSupabaseLogado = false;
+    }
+    catch(error){
+      debugPrint('Erro ao deletar usuário -> $error');
+    }
+  }
+
+  updatePassword(newPassword) async{
+    try {
+      final UserResponse res = await supabase.auth.updateUser(
+        UserAttributes(
+          password: newPassword,
+        ),
+      );
+    }
+    catch(error){
+      debugPrint('Erro ao alterar senha -> $error');
+    }
+  }
+
+  updateAtributos() async{
+    try{
+      await supabase.from('users').update({
+        'level':usuario.nivel,
+        'xp': usuario.xp,
+        'forca': usuario.atributos.forca,
+        'destreza': usuario.atributos.destreza,
+        'carisma': usuario.atributos.carisma,
+        'percepcao': usuario.atributos.percepcao,
+        'inteligencia': usuario.atributos.inteligencia,
+        'agilidade': usuario.atributos.agilidade
+      }).match({'user_id':userSupabaseId});
+    } catch(error){
+      debugPrint('Erro ao atualizar atributos -> $error');
     }
   }
 
@@ -35,28 +107,33 @@ class dbSupabase {
       );
       final User? user = res.user;
 
-      userSupabaseId = user!.id; // Altera userID global
-      userSupabaseLogado = true;
-
       // Recebe as informações do usuário do Supabase
-      final Map<String, dynamic> userInfo = await supabase
+      Map<String, dynamic> userInfo = await supabase
           .from('users')
           .select('*')
-          .eq('user_id', userSupabaseId)
+          .eq('user_id', user?.id)
           .single();
-      // Inicializa objeto usuário
-      usuario = Usuario(userInfo["name"], userInfo["email"], userInfo["level"],
-          userInfo["xp"]);
-      // Atualiza atributos
-      usuario.updateAtributos(
-          userInfo["forca"],
-          userInfo["destreza"],
-          userInfo["carisma"],
-          userInfo["percepcao"],
-          userInfo["inteligencia"],
-          userInfo["agilidade"]);
-      // Printa as informações do usuário
-      debugPrint(usuario.toString());
+      if(userInfo['deletado'] == false) {
+        // Inicializa objeto usuário
+        usuario =
+            Usuario(userInfo["name"], userInfo["email"], userInfo["level"],
+                userInfo["xp"]);
+        // Atualiza atributos
+        usuario.updateAtributos(
+            userInfo["forca"],
+            userInfo["destreza"],
+            userInfo["carisma"],
+            userInfo["percepcao"],
+            userInfo["inteligencia"],
+            userInfo["agilidade"]);
+        // Printa as informações do usuário
+        debugPrint(usuario.toString());
+        userSupabaseId = user!.id; // Altera userID global
+        userSupabaseLogado = true;
+      } else {
+        userSupabaseLogado = false;
+        debugPrint('Erro ao fazer Login: -> Usuário deletado');
+      }
     } catch (error) {
       debugPrint('Erro ao fazer Login: -> $error');
     }

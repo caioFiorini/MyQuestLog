@@ -10,9 +10,10 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Supabase.initialize(
+
     url: 'https://jtfeeqwhxuqxfwjgetze.supabase.co',
     anonKey:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp0ZmVlcXdoeHVxeGZ3amdldHplIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Njc3Nzc2ODAsImV4cCI6MTk4MzM1MzY4MH0.pnqTVIq5ZVGYpgvBbWHRLhpD4984Hnki8F3SdX4FJBw',
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp0ZmVlcXdoeHVxeGZ3amdldHplIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY2Nzc3NzY4MCwiZXhwIjoxOTgzMzUzNjgwfQ.EOd4rDoPmlhkMc8jHGC3RodSo4XnNAEJdRh6jR6Q5AY'
   );
   runApp(App());
 }
@@ -21,7 +22,7 @@ final supabase = Supabase.instance.client;
 var userSupabaseId = "";
 var userSupabaseLogado = false;
 final dbSupabase dbSup = dbSupabase();
-late final Usuario usuario;
+late Usuario usuario;
 late final Database_MyQuesLog tarefas = Database_MyQuesLog();
 
 class App extends StatelessWidget {

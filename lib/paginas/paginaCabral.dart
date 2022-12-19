@@ -14,8 +14,6 @@ class PaginaCabral extends StatefulWidget {
   State<PaginaCabral> createState() => _PaginaCabralState();
 }
 
-//TODO: Tornar esses valores alteráveis
-//TODO: LIGAR APP AO SHARED PREFERENCES
 int userXP = 100;
 String userXPText = userXP.toString();
 double userXPPercentage = userXP / 1000;
@@ -44,21 +42,6 @@ class _PaginaCabralState extends State<PaginaCabral> {
       inteli = prefs.getInt("Inteli") ?? 0;
       agilidade = prefs.getInt("Agili") ?? 0;
     });
-  }
-
-  void _indicadorDeNivel() async {
-    if (usuario.xp > 100 * usuario.nivel) {
-      usuario.nivel++;
-      if (usuario.nivel % 2 == 0) {
-        usuario.atributos.forca++;
-        usuario.atributos.destreza++;
-        usuario.atributos.inteligencia++;
-      } else {
-        usuario.atributos.carisma++;
-        usuario.atributos.percepcao++;
-        usuario.atributos.agilidade++;
-      }
-    }
   }
 
   @override

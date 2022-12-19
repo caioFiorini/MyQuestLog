@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:myquestlog/Routers/routes.dart';
 import 'package:go_router/go_router.dart';
@@ -18,7 +17,6 @@ class PageJuliana extends StatefulWidget {
 class _PageJulianaState extends State<PageJuliana> {
   late List<Tarefas> _tarefas = [];
   late final String? _textoSalvo;
-  late final int? _xp_salvo;
 
   List<Tarefas> get _recentTarefas {
     return _tarefas.where((tf) {
@@ -50,6 +48,7 @@ class _PageJulianaState extends State<PageJuliana> {
   }
 
   _removeTarefas(String nomeTarefa) {
+
     setState(() {
       _tarefas.removeWhere((tf) => tf.nome_tarefa == nomeTarefa);
       tarefas.excluir_tarefa(nomeTarefa);

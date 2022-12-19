@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:myquestlog/database/database.dart';
 import 'package:myquestlog/Routers/routes.dart';
 import 'package:go_router/go_router.dart';
+import 'package:myquestlog/main.dart';
 
 class ContaConfig extends StatefulWidget {
   const ContaConfig({super.key});
@@ -74,6 +75,7 @@ class _ContaConfigState extends State<ContaConfig> {
                     onPressed: () {
                       /*database_myQuesLog
                           .excluir_usuario(controller_email_delete.text);*/
+                      dbSup.deleteUser();
                       context.push('/');
                     },
                     child: const Text(
@@ -183,6 +185,7 @@ class _ContaConfigState extends State<ContaConfig> {
                         controller_nova_senha_update.text);
                     context.push('/');
                   } else {}*/
+                  dbSup.updatePassword(controller_nova_senha_update);
                 },
                 child: const Text(
                   "Atualizar Senha",
