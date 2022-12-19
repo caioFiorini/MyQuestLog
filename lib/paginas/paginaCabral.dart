@@ -251,7 +251,7 @@ class _PaginaCabralState extends State<PaginaCabral> {
                                         width: 100,
                                         lineHeight: 8,
                                         animation: true,
-                                        percent: inteli / 100,
+                                        percent: usuario.atributos.inteligencia / 100,
                                         backgroundColor:
                                             const Color(0xFF606060),
                                         progressColor: const Color(0xFFC99F0D),

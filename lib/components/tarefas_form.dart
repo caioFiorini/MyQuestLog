@@ -33,7 +33,7 @@ class _TarefasFormState extends State<TarefasForm> {
     if (titulo == null || value <= 0) {
       return;
     }
-    // Adiciona o xp ao usuário 
+    // Adiciona o xp ao usuário
     usuario.addXP(value);
 
     widget.onSubmit(titulo!, value, _selectedDate);
